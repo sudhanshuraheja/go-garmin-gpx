@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx version="1.1" creator="creator"> 
+    <metadata>
+        <name>name</name>
+        <desc>description</desc>
+        <author>
+            <name>authorName</name>
+            <email id="emailID" domain="emailDomain"></email>
+            <link href="http://url.tld">
+                <text>someText</text>
+                <type>linkType</type>
+            </link>
+        </author>
+        <copyright author="copyrightAuthor">
+            <year>2019</year>
+            <license>http://url.tld</license>
+        </copyright>
+        <link href="http://url.tld">
+            <text>someText</text>
+            <type>linkType</type>
+        </link>
+        <time>2018-02-26T22:58:34Z</time>
+        <keywords>keywords</keywords>
+        <bounds minlat="-90.0" minlon="-180.0" maxlat="90.0" minlon="180.0"></bounds>
+        <extensions></extensions>
+    </metadata>
+    <wpt lat="90.0" lon="180.0">
+        <ele>pointElement</ele>
+        <time>2018-02-26T22:58:34Z</time>
+        <magvar>360.0</magvar>
+        <geoidheight>0.0</geoidheight>
+        <name>pointName</name>
+        <cmt>pointComment</cmt>
+        <desc>pointDescription</desc>
+        <src>pointSource</src>
+        <link href="http://url.tld">
+            <text>someText</text>
+            <type>linkType</type>
+        </link>
+        <sym>pointSymbol</sym>
+        <type>pointType</type>
+        <fix>3d</fix>
+        <sat>1</sat>
+        <hdop>0.0</hdop>
+        <vdop>0.0</vdop>
+        <pdop>0.0</pdop>
+        <ageofdgpsdata>0.0</ageofdgpsdata>
+        <dgpsid>1023</dgpsid>
+        <extensions></extensions>
+    </wpt>
+    <rte>
+        <name>routeName</name>
+        <cmt>routeComment</cmt>
+        <desc>routeDescription</desc>
+        <src>routeSrc</src>
+        <link href="http://url.tld">
+            <text>someText</text>
+            <type>linkType</type>
+        </link>
+        <number>1</number>
+        <type>routeType</type>
+        <extensions></extensions>
+        <rtept lat="90.0" lon="180.0">
+            <ele>pointElement</ele>
+            <time>2018-02-26T22:58:34Z</time>
+            <magvar>360.0</magvar>
+            <geoidheight>0.0</geoidheight>
+            <name>pointName</name>
+            <cmt>pointComment</cmt>
+            <desc>pointDescription</desc>
+            <src>pointSource</src>
+            <link href="http://url.tld">
+                <text>someText</text>
+                <type>linkType</type>
+            </link>
+            <sym>pointSymbol</sym>
+            <type>pointType</type>
+            <fix>3d</fix>
+            <sat>1</sat>
+            <hdop>0.0</hdop>
+            <vdop>0.0</vdop>
+            <pdop>0.0</pdop>
+            <ageofdgpsdata>0.0</ageofdgpsdata>
+            <dgpsid>1023</dgpsid>
+            <extensions></extensions>
+        </rtept>
+    </rte>
+    <trk>
+        <name>trackName</name>
+        <cmt>trackComment</cmt>
+        <desc>trackDescription</desc>
+        <src>trackSource</src>
+        <link href="http://url.tld">
+            <text>someText</text>
+            <type>linkType</type>
+        </link>
+        <number>1</number>
+        <type>trackType</type>
+        <extensions></extensions>
+        <trkseg>
+            <trkpt lat="90.0" lon="180.0">
+                <ele>pointElement</ele>
+                <time>2018-02-26T22:58:34Z</time>
+                <magvar>360.0</magvar>
+                <geoidheight>0.0</geoidheight>
+                <name>pointName</name>
+                <cmt>pointComment</cmt>
+                <desc>pointDescription</desc>
+                <src>pointSource</src>
+                <link href="http://url.tld">
+                    <text>someText</text>
+                    <type>linkType</type>
+                </link>
+                <sym>pointSymbol</sym>
+                <type>pointType</type>
+                <fix>3d</fix>
+                <sat>1</sat>
+                <hdop>0.0</hdop>
+                <vdop>0.0</vdop>
+                <pdop>0.0</pdop>
+                <ageofdgpsdata>0.0</ageofdgpsdata>
+                <dgpsid>1023</dgpsid>
+                <extensions></extensions>
+            </trkpt>
+            <extensions></extensions>
+        </trkseg>
+    </trk>
+    <extensions> extensionsType </extensions>
+</gpx>
