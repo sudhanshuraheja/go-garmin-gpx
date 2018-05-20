@@ -54,7 +54,7 @@ type Metadata struct {
 	Timestamp   string    `xml:"time,omitempty"`
 	Keywords    string    `xml:"keywords,omitempty"`
 	Bounds      Bounds    `xml:"bounds"`
-	Extensions  string    `xml:"extensions,omitempty"`
+	Extensions  Extension `xml:"extensions,omitempty"`
 }
 
 // WayPoint is a point of interest, or named feature on a map.
@@ -79,7 +79,7 @@ type WayPoint struct {
 	PositionDilutionOfPrecision   float64     `xml:"pdop,omitempty"`
 	AgeOfGpsData                  float64     `xml:"ageofgpsdata,omitempty"`
 	DifferentialGPSID             DGPSStation `xml:"dgpsid,omitempty"`
-	Extensions                    string      `xml:"extensions,omitempty"`
+	Extensions                    Extension   `xml:"extensions,omitempty"`
 }
 
 // Route is an ordered list of Waypoints representing a series of points leading to a destination.
@@ -92,7 +92,7 @@ type Route struct {
 	Links       []Link     `xml:"link"`
 	Number      int        `xml:"number,omitempty"`
 	Type        string     `xml:"type,omitempty"`
-	Extensions  string     `xml:"extensions,omitempty"`
+	Extensions  Extension  `xml:"extensions,omitempty"`
 	RoutePoints []WayPoint `xml:"rtept"`
 }
 
@@ -106,15 +106,29 @@ type Track struct {
 	Links         []Link         `xml:"link"`
 	Number        int            `xml:"number,omitempty"`
 	Type          string         `xml:"type,omitempty"`
-	Extensions    string         `xml:"extensions,omitempty"`
+	Extensions    Extension      `xml:"extensions,omitempty"`
 	TrackSegments []TrackSegment `xml:"trkseg"`
+}
+
+// Extension extend GPX by adding your own elements from another schema
+type Extension struct {
+	XMLName              xml.Name            `xml:"extensions"`
+	TrackPointExtensions TrackPointExtension `xml:"TrackPointExtension,omitempty"`
+}
+
+// TrackPointExtension tracks temperature, heart rate and cadence specific to garmin devices
+type TrackPointExtension struct {
+	XMLName     xml.Name `xml:"TrackPointExtension"`
+	Temperature int      `xml:"atemp,omitempty"`
+	HeartRate   int      `xml:"hr,omitempty"`
+	Cadence     int      `xml:"cad,omitempty"`
 }
 
 // TrackSegment has a list of continious span of TrackPoints
 type TrackSegment struct {
 	XMLName    xml.Name   `xml:"trkseg"`
 	TrackPoint []WayPoint `xml:"trkpt"`
-	Extensions string     `xml:"extensions,omitempty"`
+	Extensions Extension  `xml:"extensions,omitempty"`
 }
 
 // Copyright has information about holder and license
