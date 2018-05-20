@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx version="1.1" creator="creator"> 
+    <metadata>
+        <name>name</name>
+        <desc>description</desc>
+    </metadata>
+    <wpt lat="90.0" lon="180.0">
+        <hdop>0.0</hdop>
+        <vdop>0.0</vdop>
+        <pdop>0.0</pdop>
+        <ageofdgpsdata>0.0</ageofdgpsdata>
+        <dgpsid>1023</dgpsid>
+        <extensions></extensions>
+    </wpt>
+    <trk>
+        <name>trackName</name>
+        <trkseg>
+            <trkpt lat="90.0" lon="180.0">
+                <ele>pointElement</ele>
+                <time>2018-02-26T22:58:34Z</time>
+                <magvar>360.0</magvar>
+                <geoidheight>0.0</geoidheight>
+                <name>pointName</name>
+                <cmt>pointComment</cmt>
+                <desc>pointDescription</desc>
+                <sym>pointSymbol</sym>
+                <type>pointType</type>
+                <fix>3d</fix>
+                <sat>1</sat>
+                <hdop>0.0</hdop>
+                <vdop>0.0</vdop>
+                <pdop>0.0</pdop>
+                <ageofdgpsdata>0.0</ageofdgpsdata>
+                <dgpsid>1023</dgpsid>
+                <extensions></extensions>
+            </trkpt>
+            <extensions></extensions>
+        </trkseg>
+    </trk>
+    <extensions> extensionsType </extensions>
+</gpx>

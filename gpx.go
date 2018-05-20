@@ -1,6 +1,34 @@
 package gpx
 
-import "encoding/xml"
+import (
+	"encoding/xml"
+	"io/ioutil"
+)
+
+// ParseFile takes a file and parses it
+func ParseFile(fileName string) (*GPX, error) {
+	g := GPX{}
+
+	bytes, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		return &g, err
+	}
+
+	err = Parse(bytes, &g)
+	if err != nil {
+		return &g, err
+	}
+	return &g, nil
+}
+
+// Parse bytes of xml
+func Parse(bytes []byte, g *GPX) error {
+	err := xml.Unmarshal(bytes, g)
+	if err != nil {
+		return err
+	}
+	return nil
+}
 
 // Comments from http://www.topografix.com/GPX/1/1/
 
@@ -12,7 +40,7 @@ type GPX struct {
 	Metadata  Metadata   `xml:"metadata,omitempty"`
 	Waypoints []WayPoint `xml:"wpt,omitempty"`
 	Routes    []Route    `xml:"rte,omitempty"`
-	Tracks    []Track    `xml:"trk"`
+	Tracks    Track      `xml:"trk"`
 }
 
 // Metadata has information about the GPX file
@@ -84,9 +112,9 @@ type Track struct {
 
 // TrackSegment has a list of continious span of TrackPoints
 type TrackSegment struct {
-	XMLName    xml.Name `xml:"trkseg"`
-	TrackPoint WayPoint `xml:"trkpt"`
-	Extensions string   `xml:"extensions,omitempty"`
+	XMLName    xml.Name   `xml:"trkseg"`
+	TrackPoint []WayPoint `xml:"trkpt"`
+	Extensions string     `xml:"extensions,omitempty"`
 }
 
 // Copyright has information about holder and license
