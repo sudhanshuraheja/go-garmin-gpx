@@ -21,7 +21,7 @@
         </link>
         <time>2018-02-26T22:58:34Z</time>
         <keywords>keywords</keywords>
-        <bounds minlat="-90.0" minlon="-180.0" maxlat="90.0" minlon="180.0"></bounds>
+        <bounds minlat="-90.0" minlon="-180.0" maxlat="90.0" maxlon="180.0"></bounds>
         <extensions></extensions>
     </metadata>
     <wpt lat="90.0" lon="180.0">

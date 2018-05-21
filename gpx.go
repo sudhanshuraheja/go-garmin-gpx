@@ -40,7 +40,7 @@ type GPX struct {
 	Metadata  Metadata   `xml:"metadata,omitempty"`
 	Waypoints []WayPoint `xml:"wpt,omitempty"`
 	Routes    []Route    `xml:"rte,omitempty"`
-	Tracks    Track      `xml:"trk"`
+	Tracks    []Track    `xml:"trk"`
 }
 
 // Metadata has information about the GPX file
@@ -64,7 +64,7 @@ type WayPoint struct {
 	Elevation                     float64     `xml:"ele,omitempty"`
 	Timestamp                     string      `xml:"time,omitempty"`
 	MagneticVariation             Degrees     `xml:"magvar,omitempty"`
-	GeoIDHeight                   string      `xml:"geoidheight,omitempty"`
+	GeoIDHeight                   float64     `xml:"geoidheight,omitempty"`
 	Name                          string      `xml:"name,omitempty"`
 	Comment                       string      `xml:"cmt,omitempty"`
 	Description                   string      `xml:"desc,omitempty"`
@@ -135,7 +135,7 @@ type TrackSegment struct {
 type Copyright struct {
 	XMLName xml.Name `xml:"copyright"`
 	Author  string   `xml:"author,attr"`
-	Year    string   `xml:"year,omitempty"`
+	Year    int      `xml:"year,omitempty"`
 	License string   `xml:"license,omitempty"`
 }
 
@@ -179,11 +179,11 @@ type PointSegment struct {
 
 // Bounds are two latitude longitude pairs defining the extent of an element.
 type Bounds struct {
-	XMLName xml.Name `xml:"bounds"`
-	MinLat  float64  `xml:"minlat,attr"`
-	MaxLat  float64  `xml:"maxlat,attr"`
-	MinLon  float64  `xml:"minlon,attr"`
-	MaxLon  float64  `xml:"maxlon,attr"`
+	XMLName          xml.Name  `xml:"bounds"`
+	MinimumLatitude  Latitude  `xml:"minlat,attr"`
+	MaximumLatitude  Latitude  `xml:"maxlat,attr"`
+	MinimumLongitude Longitude `xml:"minlon,attr"`
+	MaximumLongitude Longitude `xml:"maxlon,attr"`
 }
 
 // Latitude is the latitude of the point. Decimal degrees, WGS84 datum. The value varies between -90.0 to 90.0
