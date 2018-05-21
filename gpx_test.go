@@ -35,14 +35,14 @@ func Test_MapboxParser(t *testing.T) {
 	assert.Equal(t, gpx.Latitude(38.92747367732227), point0.Latitude)
 	assert.Equal(t, 25.600000381469727, point0.Elevation)
 	assert.Equal(t, "2012-10-24T23:29:40.000Z", point0.Timestamp)
-	assert.Equal(t, 130, point0.Extensions.TrackPointExtensions.HeartRate)
+	assert.Equal(t, gpx.BeatsPerMinute(130), point0.Extensions.TrackPointExtensions.HeartRate)
 
 	point1 := g.Tracks[0].TrackSegments[0].TrackPoint[1]
 	assert.Equal(t, gpx.Longitude(-77.02014584094286), point1.Longitude)
 	assert.Equal(t, gpx.Latitude(38.927609380334616), point1.Latitude)
 	assert.Equal(t, 35.599998474121094, point1.Elevation)
 	assert.Equal(t, "2012-10-24T23:30:00.000Z", point1.Timestamp)
-	assert.Equal(t, 134, point1.Extensions.TrackPointExtensions.HeartRate)
+	assert.Equal(t, gpx.BeatsPerMinute(134), point1.Extensions.TrackPointExtensions.HeartRate)
 }
 
 func Test_SpecParser(t *testing.T) {
@@ -106,30 +106,16 @@ func Test_StLouisZooParser(t *testing.T) {
 	assert.Equal(t, "Asian Elephant", g.Waypoints[0].Name)
 	assert.Equal(t, "Data/Location3152-1", g.Waypoints[0].Links[0].URL)
 	assert.Equal(t, "Waypoint", g.Waypoints[0].Symbol)
+	assert.Equal(t, gpx.Metres(15.24), g.Waypoints[0].Extensions.WayPointExtensions.Proximity)
+	assert.Equal(t, gpx.DisplayMode("SymbolAndName"), g.Waypoints[0].Extensions.WayPointExtensions.DisplayMode)
 
 	assert.Equal(t, gpx.Latitude(38.63368), g.Waypoints[1].Latitude)
 	assert.Equal(t, gpx.Longitude(-90.28679), g.Waypoints[1].Longitude)
 	assert.Equal(t, "Bactrian Camel", g.Waypoints[1].Name)
 	assert.Equal(t, "Data/Location3152-2", g.Waypoints[1].Links[0].URL)
 	assert.Equal(t, "Waypoint", g.Waypoints[1].Symbol)
-
-	//     <wpt lat="38.63473" lon="-90.29408">
-	//         <extensions>
-	//             <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
-	//                 <gpxx:Proximity>15.24</gpxx:Proximity>
-	//                 <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
-	//             </gpxx:WaypointExtension>
-	//         </extensions>
-	//     </wpt>
-	//     <wpt lat="38.63368" lon="-90.28679">
-	//         <extensions>
-	//             <gpxx:WaypointExtension xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensions/v3/GpxExtensionsv3.xsd">
-	//                 <gpxx:Proximity>15.24</gpxx:Proximity>
-	//                 <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
-	//             </gpxx:WaypointExtension>
-	//         </extensions>
-	//     </wpt>
-
+	assert.Equal(t, gpx.Metres(15.24), g.Waypoints[0].Extensions.WayPointExtensions.Proximity)
+	assert.Equal(t, gpx.DisplayMode("SymbolAndName"), g.Waypoints[0].Extensions.WayPointExtensions.DisplayMode)
 }
 
 func Test_StravaSampleParser(t *testing.T) {
@@ -141,13 +127,13 @@ func Test_StravaSampleParser(t *testing.T) {
 
 	assert.Equal(t, "Really bad GPS", g.Tracks[0].Name)
 	assert.Equal(t, 16.6, g.Tracks[0].TrackSegments[0].TrackPoint[0].Elevation)
-	assert.Equal(t, 28, g.Tracks[0].TrackSegments[0].TrackPoint[0].Extensions.TrackPointExtensions.Temperature)
-	assert.Equal(t, 95, g.Tracks[0].TrackSegments[0].TrackPoint[0].Extensions.TrackPointExtensions.HeartRate)
-	assert.Equal(t, 0, g.Tracks[0].TrackSegments[0].TrackPoint[0].Extensions.TrackPointExtensions.Cadence)
+	assert.Equal(t, gpx.DegreesCelcius(28), g.Tracks[0].TrackSegments[0].TrackPoint[0].Extensions.TrackPointExtensions.Temperature)
+	assert.Equal(t, gpx.BeatsPerMinute(95), g.Tracks[0].TrackSegments[0].TrackPoint[0].Extensions.TrackPointExtensions.HeartRate)
+	assert.Equal(t, gpx.RevolutionsPerMinute(0), g.Tracks[0].TrackSegments[0].TrackPoint[0].Extensions.TrackPointExtensions.Cadence)
 	assert.Equal(t, 16.4, g.Tracks[0].TrackSegments[0].TrackPoint[1].Elevation)
-	assert.Equal(t, 28, g.Tracks[0].TrackSegments[0].TrackPoint[1].Extensions.TrackPointExtensions.Temperature)
-	assert.Equal(t, 95, g.Tracks[0].TrackSegments[0].TrackPoint[1].Extensions.TrackPointExtensions.HeartRate)
-	assert.Equal(t, 0, g.Tracks[0].TrackSegments[0].TrackPoint[1].Extensions.TrackPointExtensions.Cadence)
+	assert.Equal(t, gpx.DegreesCelcius(28), g.Tracks[0].TrackSegments[0].TrackPoint[1].Extensions.TrackPointExtensions.Temperature)
+	assert.Equal(t, gpx.BeatsPerMinute(95), g.Tracks[0].TrackSegments[0].TrackPoint[1].Extensions.TrackPointExtensions.HeartRate)
+	assert.Equal(t, gpx.RevolutionsPerMinute(0), g.Tracks[0].TrackSegments[0].TrackPoint[1].Extensions.TrackPointExtensions.Cadence)
 }
 
 func Test_WikipediaParser(t *testing.T) {
