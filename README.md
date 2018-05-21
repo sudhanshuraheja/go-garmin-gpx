@@ -1,4 +1,7 @@
-# GO-GPX
+# GO-GARMIN-GPX
+
+GPX parsing library for the Go language which also support all Garmin extensions
+#gpx #gpx-library #go #golang
 
 ## What is GPX
 
@@ -47,6 +50,42 @@ It can handle the following from the Garmin Extension spec
 - Track Extensions
 - TrackPoint Extensions
 
+## Getting Started
+
+You can install it into your project using
+
+```bash
+dep ensure -add github.com/sudhanshuraheja/go-garmin-gpx
+```
+
+If you would like to run the automated tests for the complete package, run this
+
+```bash
+make coverage
+open ./coverage.html
+```
+
+We use the default golang coding conventions. Run the following to test for those
+
+```bash
+make fmt
+make vet
+make lint
+```
+
 ## Samples
 
 You can find some samples of GPX files in the `/samples` folder
+
+## Roadmap
+
+- Add support for writing files
+- Avoid reading the complete file into memory
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://github.com/sudhanshuraheja/go-garmin-gpx/blob/master/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](https://github.com/sudhanshuraheja/go-garmin-gpx/blob/master/LICENSE) file for details

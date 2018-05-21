@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	gpx "github.com/sudhanshuraheja/go-gpx"
+	gpx "github.com/sudhanshuraheja/go-garmin-gpx"
 )
 
 func Test_WrongFileParser(t *testing.T) {
