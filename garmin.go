@@ -35,10 +35,10 @@ type RouteExtensions struct {
 
 // RouteExtension tracks temperature, heart rate and cadence specific to garmin devices
 type RouteExtension struct {
-	XMLName      xml.Name     `xml:"RouteExtension"`
-	IsAutoNamed  bool         `xml:"IsAutoNamed,omitempty"`
-	DisplayColor DisplayColor `xml:"DisplayColor,omitempty"`
-	Extensions   Extensions   `xml:"Extensions,omitempty"`
+	XMLName      xml.Name         `xml:"RouteExtension"`
+	IsAutoNamed  bool             `xml:"IsAutoNamed,omitempty"`
+	DisplayColor DisplayColor     `xml:"DisplayColor,omitempty"`
+	Extensions   GarminExtensions `xml:"Extensions,omitempty"`
 }
 
 // RoutePointExtensions extend GPX by adding your own elements from another schema
@@ -49,10 +49,10 @@ type RoutePointExtensions struct {
 
 // RoutePointExtension tracks temperature, heart rate and cadence specific to garmin devices
 type RoutePointExtension struct {
-	XMLName        xml.Name       `xml:"RoutePointExtension"`
-	Subclass       SubClass       `xml:"Subclass,omitempty"`
-	AutoRoutePoint AutoRoutePoint `xml:"rpt,omitempty"`
-	Extensions     Extensions     `xml:"Extensions,omitempty"`
+	XMLName        xml.Name         `xml:"RoutePointExtension"`
+	Subclass       SubClass         `xml:"Subclass,omitempty"`
+	AutoRoutePoint AutoRoutePoint   `xml:"rpt,omitempty"`
+	Extensions     GarminExtensions `xml:"Extensions,omitempty"`
 }
 
 // TrackExtensions extend GPX by adding your own elements from another schema
@@ -63,9 +63,9 @@ type TrackExtensions struct {
 
 // TrackExtension tracks temperature, heart rate and cadence specific to garmin devices
 type TrackExtension struct {
-	XMLName      xml.Name     `xml:"TrackExtension"`
-	DisplayColor DisplayColor `xml:"DisplayColor,omitempty"`
-	Extensions   Extensions   `xml:"Extensions,omitempty"`
+	XMLName      xml.Name         `xml:"TrackExtension"`
+	DisplayColor DisplayColor     `xml:"DisplayColor,omitempty"`
+	Extensions   GarminExtensions `xml:"Extensions,omitempty"`
 }
 
 // TrackPointExtensions extend GPX by adding your own elements from another schema
@@ -83,7 +83,7 @@ type TrackPointExtension struct {
 	Depth        Metres               `xml:"depth,omitempty"`
 	HeartRate    BeatsPerMinute       `xml:"hr,omitempty"`
 	Cadence      RevolutionsPerMinute `xml:"cad,omitempty"`
-	Extensions   Extensions           `xml:"extensions,omitempty"`
+	Extensions   GarminExtensionsV1   `xml:"extensions,omitempty"`
 }
 
 // TrackPointExtension tracks temperature, heart rate and cadence specific to garmin devices
@@ -95,6 +95,16 @@ type TrackPointExtension struct {
 // 	Extensions  Extensions     `xml:"Extensions,omitempty"`
 // }
 
+// GarminExtensions handles extensions in garmin extensions
+type GarminExtensions struct {
+	XMLName xml.Name `xml:"Extensions"`
+}
+
+// GarminExtensionsV1 handles extensions in garmin extensions
+type GarminExtensionsV1 struct {
+	XMLName xml.Name `xml:"extensions"`
+}
+
 // Categories contains a list of categories that a waypoint has been assigned
 type Categories struct {
 	XMLName  xml.Name `xml:"Categories"`
@@ -103,13 +113,13 @@ type Categories struct {
 
 // Address is the address, duh
 type Address struct {
-	XMLName       xml.Name   `xml:"Address"`
-	StreetAddress []string   `xml:"StreetAddress,omitempty"`
-	City          string     `xml:"City,omitempty"`
-	State         string     `xml:"State,omitempty"`
-	Country       string     `xml:"Country,omitempty"`
-	PostalCode    string     `xml:"PostalCode,omitempty"`
-	Extensions    Extensions `xml:"Extensions,omitempty"`
+	XMLName       xml.Name         `xml:"Address"`
+	StreetAddress []string         `xml:"StreetAddress,omitempty"`
+	City          string           `xml:"City,omitempty"`
+	State         string           `xml:"State,omitempty"`
+	Country       string           `xml:"Country,omitempty"`
+	PostalCode    string           `xml:"PostalCode,omitempty"`
+	Extensions    GarminExtensions `xml:"Extensions,omitempty"`
 }
 
 // PhoneNumber saves the phone number and type
@@ -173,7 +183,7 @@ const (
 
 // AutoRoutePoint (not sure what this does)
 type AutoRoutePoint struct {
-	XMLName   xml.Name  `xml:"AutoroutePoint"`
+	XMLName   xml.Name  `xml:"rpt"`
 	Latitude  Latitude  `xml:"lat,attr,omitempty"`
 	Longitude Longitude `xml:"lon,attr,omitempty"`
 	SubClass  SubClass  `xml:"Subclass,omitempty"`

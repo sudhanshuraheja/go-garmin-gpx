@@ -1,6 +1,7 @@
 package gpx_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -152,4 +153,25 @@ func Test_WikipediaParser(t *testing.T) {
 	assert.Equal(t, 4.94, g.Tracks[0].TrackSegments[0].TrackPoint[1].Elevation)
 	assert.Equal(t, gpx.Latitude(47.644548), g.Tracks[0].TrackSegments[0].TrackPoint[2].Latitude)
 	assert.Equal(t, 6.87, g.Tracks[0].TrackSegments[0].TrackPoint[2].Elevation)
+}
+
+func Test_WriteGPX(t *testing.T) {
+
+	files := []string{"mapbox", "spec", "StLouisZoo", "strava-1427712053", "wikipedia-sample"}
+
+	for _, file := range files {
+		process := fmt.Sprintf("./samples/%s.gpx", file)
+		out := fmt.Sprintf("./out/%s.gpx", file)
+
+		g, err := gpx.ParseFile(process)
+		assert.Nil(t, err)
+
+		err = gpx.Write(g, file)
+		assert.Nil(t, err)
+
+		p, err := gpx.ParseFile(out)
+		assert.Nil(t, err)
+		assert.Equal(t, "1.1", p.Version)
+	}
+
 }

@@ -73,6 +73,19 @@ make vet
 make lint
 ```
 
+## Usage
+
+```go
+file := "./samples/mapbox.gpx"
+g, err := gpx.ParseFile(file)
+
+if err != nil {
+    return err
+}
+
+fmt.Println(g.Metadata.Timestamp)
+```
+
 ## Samples
 
 You can find some samples of GPX files in the `/samples` folder

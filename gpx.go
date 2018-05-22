@@ -2,6 +2,7 @@ package gpx
 
 import (
 	"encoding/xml"
+	"fmt"
 	"io/ioutil"
 )
 
@@ -24,6 +25,22 @@ func ParseFile(fileName string) (*GPX, error) {
 // Parse bytes of xml
 func Parse(bytes []byte, g *GPX) error {
 	err := xml.Unmarshal(bytes, g)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// Write GPX file
+func Write(g *GPX, fileName string) error {
+	output, err := xml.MarshalIndent(g, "", "    ")
+	if err != nil {
+		return err
+	}
+
+	path := fmt.Sprintf("./out/%s.gpx", fileName)
+
+	err = ioutil.WriteFile(path, output, 0755)
 	if err != nil {
 		return err
 	}
