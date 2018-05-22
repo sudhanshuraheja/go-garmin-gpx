@@ -92,7 +92,6 @@ You can find some samples of GPX files in the `/samples` folder
 
 ## Roadmap
 
-- Add support for writing files
 - Avoid reading the complete file into memory
 
 ## Contributing
