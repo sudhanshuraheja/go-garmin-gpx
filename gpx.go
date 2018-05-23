@@ -67,16 +67,16 @@ type GPX struct {
 
 // Metadata has information about the GPX file
 type Metadata struct {
-	XMLName     xml.Name   `xml:"metadata"`
-	Name        string     `xml:"name,omitempty"`
-	Description string     `xml:"desc,omitempty"`
-	Author      Person     `xml:"author,omitempty"`
-	Copyright   Copyright  `xml:"copyright,omitempty"`
-	Links       []Link     `xml:"link,omitempty"`
-	Timestamp   string     `xml:"time,omitempty"`
-	Keywords    string     `xml:"keywords,omitempty"`
-	Bounds      Bounds     `xml:"bounds,omitempty"`
-	Extensions  Extensions `xml:"extensions,omitempty"`
+	XMLName     xml.Name    `xml:"metadata"`
+	Name        string      `xml:"name,omitempty"`
+	Description string      `xml:"desc,omitempty"`
+	Author      *Person     `xml:"author,omitempty"`
+	Copyright   Copyright   `xml:"copyright,omitempty"`
+	Links       []Link      `xml:"link,omitempty"`
+	Timestamp   string      `xml:"time,omitempty"`
+	Keywords    string      `xml:"keywords,omitempty"`
+	Bounds      Bounds      `xml:"bounds,omitempty"`
+	Extensions  *Extensions `xml:"extensions,omitempty"`
 }
 
 // WayPoint is a point of interest, or named feature on a map.
@@ -163,7 +163,7 @@ type Track struct {
 type TrackSegment struct {
 	XMLName    xml.Name     `xml:"trkseg"`
 	TrackPoint []TrackPoint `xml:"trkpt"`
-	Extensions Extensions   `xml:"extensions,omitempty"`
+	Extensions *Extensions  `xml:"extensions,omitempty"`
 }
 
 // TrackPoint is a point of interest, or named feature on a map.

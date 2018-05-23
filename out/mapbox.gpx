@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="Garmin Connect">
     <metadata>
-        <author>
-            <email></email>
-            <link></link>
-        </author>
         <copyright author=""></copyright>
         <link href="connect.garmin.com">
             <text>Garmin Connect</text>
         </link>
         <time>2012-10-24T23:22:51.000Z</time>
         <bounds minlat="0" maxlat="0" minlon="0" maxlon="0"></bounds>
-        <extensions></extensions>
     </metadata>
     <trk>
         <name>Untitled</name>
@@ -2077,7 +2072,6 @@
                     </TrackPointExtension>
                 </extensions>
             </trkpt>
-            <extensions></extensions>
         </trkseg>
     </trk>
 </gpx>
