@@ -15,7 +15,6 @@
         </link>
         <time>2008-02-26T19:49:13</time>
         <keywords>Audio tour guide&#xA;St.Louis Mo.&#xA;Zoo&#xA;Forest Park&#xA;Animals</keywords>
-        <bounds minlat="0" maxlat="0" minlon="0" maxlon="0"></bounds>
     </metadata>
     <wpt lat="38.63473" lon="-90.29408">
         <name>Asian Elephant</name>
@@ -26,8 +25,6 @@
             <WaypointExtension>
                 <Proximity>15.24</Proximity>
                 <DisplayMode>SymbolAndName</DisplayMode>
-                <Categories></Categories>
-                <Address></Address>
             </WaypointExtension>
         </extensions>
     </wpt>
@@ -40,8 +37,6 @@
             <WaypointExtension>
                 <Proximity>15.24</Proximity>
                 <DisplayMode>SymbolAndName</DisplayMode>
-                <Categories></Categories>
-                <Address></Address>
             </WaypointExtension>
         </extensions>
     </wpt>
@@ -54,8 +49,6 @@
             <WaypointExtension>
                 <Proximity>15.24</Proximity>
                 <DisplayMode>SymbolAndName</DisplayMode>
-                <Categories></Categories>
-                <Address></Address>
             </WaypointExtension>
         </extensions>
     </wpt>
@@ -68,8 +61,6 @@
             <WaypointExtension>
                 <Proximity>15.24</Proximity>
                 <DisplayMode>SymbolAndName</DisplayMode>
-                <Categories></Categories>
-                <Address></Address>
             </WaypointExtension>
         </extensions>
     </wpt>
@@ -82,8 +73,6 @@
             <WaypointExtension>
                 <Proximity>15.24</Proximity>
                 <DisplayMode>SymbolAndName</DisplayMode>
-                <Categories></Categories>
-                <Address></Address>
             </WaypointExtension>
         </extensions>
     </wpt>
@@ -96,8 +85,6 @@
             <WaypointExtension>
                 <Proximity>15.24</Proximity>
                 <DisplayMode>SymbolAndName</DisplayMode>
-                <Categories></Categories>
-                <Address></Address>
             </WaypointExtension>
         </extensions>
     </wpt>
@@ -110,8 +97,6 @@
             <WaypointExtension>
                 <Proximity>15.24</Proximity>
                 <DisplayMode>SymbolAndName</DisplayMode>
-                <Categories></Categories>
-                <Address></Address>
             </WaypointExtension>
         </extensions>
     </wpt>
@@ -124,8 +109,6 @@
             <WaypointExtension>
                 <Proximity>15.24</Proximity>
                 <DisplayMode>SymbolAndName</DisplayMode>
-                <Categories></Categories>
-                <Address></Address>
             </WaypointExtension>
         </extensions>
     </wpt>
@@ -138,8 +121,6 @@
             <WaypointExtension>
                 <Proximity>15.24</Proximity>
                 <DisplayMode>SymbolAndName</DisplayMode>
-                <Categories></Categories>
-                <Address></Address>
             </WaypointExtension>
         </extensions>
     </wpt>
@@ -152,8 +133,6 @@
             <WaypointExtension>
                 <Proximity>15.24</Proximity>
                 <DisplayMode>SymbolAndName</DisplayMode>
-                <Categories></Categories>
-                <Address></Address>
             </WaypointExtension>
         </extensions>
     </wpt>

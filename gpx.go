@@ -75,7 +75,7 @@ type Metadata struct {
 	Links       []Link      `xml:"link,omitempty"`
 	Timestamp   string      `xml:"time,omitempty"`
 	Keywords    string      `xml:"keywords,omitempty"`
-	Bounds      Bounds      `xml:"bounds,omitempty"`
+	Bounds      *Bounds     `xml:"bounds,omitempty"`
 	Extensions  *Extensions `xml:"extensions,omitempty"`
 }
 
