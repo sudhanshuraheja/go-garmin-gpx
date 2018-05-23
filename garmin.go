@@ -9,8 +9,8 @@ import "encoding/xml"
 
 // WayPointExtensions extend GPX by adding your own elements from another schema
 type WayPointExtensions struct {
-	XMLName            xml.Name          `xml:"extensions"`
-	WayPointExtensions WayPointExtension `xml:"WaypointExtension,omitempty"`
+	XMLName            xml.Name           `xml:"extensions"`
+	WayPointExtensions *WayPointExtension `xml:"WaypointExtension,omitempty"`
 }
 
 // WayPointExtension add data fields available in Garmin GDB waypoints that cannot be represented in waypoints in GPX 1.1 instances
@@ -29,8 +29,8 @@ type WayPointExtension struct {
 
 // RouteExtensions extend GPX by adding your own elements from another schema
 type RouteExtensions struct {
-	XMLName         xml.Name       `xml:"extensions"`
-	RouteExtensions RouteExtension `xml:"RouteExtension,omitempty"`
+	XMLName         xml.Name        `xml:"extensions"`
+	RouteExtensions *RouteExtension `xml:"RouteExtension,omitempty"`
 }
 
 // RouteExtension tracks temperature, heart rate and cadence specific to garmin devices
@@ -43,8 +43,8 @@ type RouteExtension struct {
 
 // RoutePointExtensions extend GPX by adding your own elements from another schema
 type RoutePointExtensions struct {
-	XMLName              xml.Name            `xml:"extensions"`
-	RoutePointExtensions RoutePointExtension `xml:"RoutePointExtension,omitempty"`
+	XMLName              xml.Name             `xml:"extensions"`
+	RoutePointExtensions *RoutePointExtension `xml:"RoutePointExtension,omitempty"`
 }
 
 // RoutePointExtension tracks temperature, heart rate and cadence specific to garmin devices
@@ -57,8 +57,8 @@ type RoutePointExtension struct {
 
 // TrackExtensions extend GPX by adding your own elements from another schema
 type TrackExtensions struct {
-	XMLName         xml.Name       `xml:"extensions"`
-	TrackExtensions TrackExtension `xml:"TrackExtension,omitempty"`
+	XMLName         xml.Name        `xml:"extensions"`
+	TrackExtensions *TrackExtension `xml:"TrackExtension,omitempty"`
 }
 
 // TrackExtension tracks temperature, heart rate and cadence specific to garmin devices
@@ -70,8 +70,8 @@ type TrackExtension struct {
 
 // TrackPointExtensions extend GPX by adding your own elements from another schema
 type TrackPointExtensions struct {
-	XMLName              xml.Name            `xml:"extensions"`
-	TrackPointExtensions TrackPointExtension `xml:"TrackPointExtension,omitempty"`
+	XMLName              xml.Name             `xml:"extensions"`
+	TrackPointExtensions *TrackPointExtension `xml:"TrackPointExtension,omitempty"`
 }
 
 // TrackPointExtension tracks temperature, heart rate and cadence specific to garmin devices
@@ -113,13 +113,13 @@ type Categories struct {
 
 // Address is the address, duh
 type Address struct {
-	XMLName       xml.Name         `xml:"Address"`
-	StreetAddress []string         `xml:"StreetAddress,omitempty"`
-	City          string           `xml:"City,omitempty"`
-	State         string           `xml:"State,omitempty"`
-	Country       string           `xml:"Country,omitempty"`
-	PostalCode    string           `xml:"PostalCode,omitempty"`
-	Extensions    GarminExtensions `xml:"Extensions,omitempty"`
+	XMLName       xml.Name          `xml:"Address"`
+	StreetAddress []string          `xml:"StreetAddress,omitempty"`
+	City          string            `xml:"City,omitempty"`
+	State         string            `xml:"State,omitempty"`
+	Country       string            `xml:"Country,omitempty"`
+	PostalCode    string            `xml:"PostalCode,omitempty"`
+	Extensions    *GarminExtensions `xml:"Extensions,omitempty"`
 }
 
 // PhoneNumber saves the phone number and type
