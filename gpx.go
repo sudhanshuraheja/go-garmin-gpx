@@ -38,9 +38,10 @@ func Write(g *GPX, fileName string) error {
 		return err
 	}
 
+	fileData := append([]byte(xml.Header), output...)
 	path := fmt.Sprintf("./out/%s.gpx", fileName)
 
-	err = ioutil.WriteFile(path, output, 0755)
+	err = ioutil.WriteFile(path, fileData, 0755)
 	if err != nil {
 		return err
 	}
