@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gpx version="1.1" creator="Garmin Connect">
     <metadata>
-        <copyright author=""></copyright>
         <link href="connect.garmin.com">
             <text>Garmin Connect</text>
         </link>
@@ -10,7 +9,6 @@
     </metadata>
     <trk>
         <name>Untitled</name>
-        <extensions></extensions>
         <trkseg>
             <trkpt lat="38.92747367732227" lon="-77.02016168273985">
                 <ele>25.600000381469727</ele>

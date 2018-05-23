@@ -71,7 +71,7 @@ type Metadata struct {
 	Name        string      `xml:"name,omitempty"`
 	Description string      `xml:"desc,omitempty"`
 	Author      *Person     `xml:"author,omitempty"`
-	Copyright   Copyright   `xml:"copyright,omitempty"`
+	Copyright   *Copyright  `xml:"copyright,omitempty"`
 	Links       []Link      `xml:"link,omitempty"`
 	Timestamp   string      `xml:"time,omitempty"`
 	Keywords    string      `xml:"keywords,omitempty"`
@@ -147,16 +147,16 @@ type RoutePoint struct {
 
 // Track represents a track - an ordered list of points describing a path
 type Track struct {
-	XMLName       xml.Name        `xml:"trk"`
-	Name          string          `xml:"name,omitempty"`
-	Comment       string          `xml:"cmt,omitempty"`
-	Description   string          `xml:"desc,omitempty"`
-	Source        string          `xml:"src,omitempty"`
-	Links         []Link          `xml:"link"`
-	Number        int             `xml:"number,omitempty"`
-	Type          string          `xml:"type,omitempty"`
-	Extensions    TrackExtensions `xml:"extensions,omitempty"`
-	TrackSegments []TrackSegment  `xml:"trkseg"`
+	XMLName       xml.Name         `xml:"trk"`
+	Name          string           `xml:"name,omitempty"`
+	Comment       string           `xml:"cmt,omitempty"`
+	Description   string           `xml:"desc,omitempty"`
+	Source        string           `xml:"src,omitempty"`
+	Links         []Link           `xml:"link"`
+	Number        int              `xml:"number,omitempty"`
+	Type          string           `xml:"type,omitempty"`
+	Extensions    *TrackExtensions `xml:"extensions,omitempty"`
+	TrackSegments []TrackSegment   `xml:"trkseg"`
 }
 
 // TrackSegment has a list of continious span of TrackPoints
@@ -168,28 +168,28 @@ type TrackSegment struct {
 
 // TrackPoint is a point of interest, or named feature on a map.
 type TrackPoint struct {
-	XMLName                       xml.Name             `xml:"trkpt"`
-	Latitude                      Latitude             `xml:"lat,attr"`
-	Longitude                     Longitude            `xml:"lon,attr"`
-	Elevation                     float64              `xml:"ele,omitempty"`
-	Timestamp                     string               `xml:"time,omitempty"`
-	MagneticVariation             Degrees              `xml:"magvar,omitempty"`
-	GeoIDHeight                   float64              `xml:"geoidheight,omitempty"`
-	Name                          string               `xml:"name,omitempty"`
-	Comment                       string               `xml:"cmt,omitempty"`
-	Description                   string               `xml:"desc,omitempty"`
-	Source                        string               `xml:"src,omitempty"`
-	Links                         []Link               `xml:"link"`
-	Symbol                        string               `xml:"sym,omitempty"`
-	Type                          string               `xml:"type,omitempty"`
-	Fix                           Fix                  `xml:"fix,omitempty"`
-	Sat                           int                  `xml:"sat,omitempty"`
-	HorizontalDilutionOfPrecision float64              `xml:"hdop,omitempty"`
-	VerticalDilutionOfPrecision   float64              `xml:"vdop,omitempty"`
-	PositionDilutionOfPrecision   float64              `xml:"pdop,omitempty"`
-	AgeOfGpsData                  float64              `xml:"ageofgpsdata,omitempty"`
-	DifferentialGPSID             DGPSStation          `xml:"dgpsid,omitempty"`
-	Extensions                    TrackPointExtensions `xml:"extensions,omitempty"`
+	XMLName                       xml.Name              `xml:"trkpt"`
+	Latitude                      Latitude              `xml:"lat,attr"`
+	Longitude                     Longitude             `xml:"lon,attr"`
+	Elevation                     float64               `xml:"ele,omitempty"`
+	Timestamp                     string                `xml:"time,omitempty"`
+	MagneticVariation             Degrees               `xml:"magvar,omitempty"`
+	GeoIDHeight                   float64               `xml:"geoidheight,omitempty"`
+	Name                          string                `xml:"name,omitempty"`
+	Comment                       string                `xml:"cmt,omitempty"`
+	Description                   string                `xml:"desc,omitempty"`
+	Source                        string                `xml:"src,omitempty"`
+	Links                         []Link                `xml:"link"`
+	Symbol                        string                `xml:"sym,omitempty"`
+	Type                          string                `xml:"type,omitempty"`
+	Fix                           Fix                   `xml:"fix,omitempty"`
+	Sat                           int                   `xml:"sat,omitempty"`
+	HorizontalDilutionOfPrecision float64               `xml:"hdop,omitempty"`
+	VerticalDilutionOfPrecision   float64               `xml:"vdop,omitempty"`
+	PositionDilutionOfPrecision   float64               `xml:"pdop,omitempty"`
+	AgeOfGpsData                  float64               `xml:"ageofgpsdata,omitempty"`
+	DifferentialGPSID             DGPSStation           `xml:"dgpsid,omitempty"`
+	Extensions                    *TrackPointExtensions `xml:"extensions,omitempty"`
 }
 
 // Copyright has information about holder and license
