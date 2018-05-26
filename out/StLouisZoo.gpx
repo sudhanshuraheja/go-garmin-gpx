@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gpx version="1.1" creator="Geovative Solutions GeoTours">
+<gpx version="1.1" creator="sudhanshuraheja/go-garmin-gpx">
     <metadata>
         <name>St Louis Zoo sample</name>
         <desc>This self guided,GPS enabled tour of the world famous St. Louis Zoo, has 85 points of interest. Narratives in english,explaining each exhibit and provides guidance to zoo facilities.This audio tour guide can enhance your next visit.</desc>
@@ -22,10 +22,10 @@
         <link href="Data/Location3152-1"></link>
         <sym>Waypoint</sym>
         <extensions>
-            <WaypointExtension>
-                <Proximity>15.24</Proximity>
-                <DisplayMode>SymbolAndName</DisplayMode>
-            </WaypointExtension>
+            <gpxx:WaypointExtension>
+                <gpxx:Proximity>15.24</gpxx:Proximity>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
         </extensions>
     </wpt>
     <wpt lat="38.63368" lon="-90.28679">
@@ -34,10 +34,10 @@
         <link href="Data/Location3152-2"></link>
         <sym>Waypoint</sym>
         <extensions>
-            <WaypointExtension>
-                <Proximity>15.24</Proximity>
-                <DisplayMode>SymbolAndName</DisplayMode>
-            </WaypointExtension>
+            <gpxx:WaypointExtension>
+                <gpxx:Proximity>15.24</gpxx:Proximity>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
         </extensions>
     </wpt>
     <wpt lat="38.63408" lon="-90.29323">
@@ -46,10 +46,10 @@
         <link href="Data/Location3152-3"></link>
         <sym>Waypoint</sym>
         <extensions>
-            <WaypointExtension>
-                <Proximity>15.24</Proximity>
-                <DisplayMode>SymbolAndName</DisplayMode>
-            </WaypointExtension>
+            <gpxx:WaypointExtension>
+                <gpxx:Proximity>15.24</gpxx:Proximity>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
         </extensions>
     </wpt>
     <wpt lat="38.63533" lon="-90.29019">
@@ -58,10 +58,10 @@
         <link href="Data/Location3152-4"></link>
         <sym>Waypoint</sym>
         <extensions>
-            <WaypointExtension>
-                <Proximity>15.24</Proximity>
-                <DisplayMode>SymbolAndName</DisplayMode>
-            </WaypointExtension>
+            <gpxx:WaypointExtension>
+                <gpxx:Proximity>15.24</gpxx:Proximity>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
         </extensions>
     </wpt>
     <wpt lat="38.63677" lon="-90.28976">
@@ -70,10 +70,10 @@
         <link href="Data/Location3152-5"></link>
         <sym>Waypoint</sym>
         <extensions>
-            <WaypointExtension>
-                <Proximity>15.24</Proximity>
-                <DisplayMode>SymbolAndName</DisplayMode>
-            </WaypointExtension>
+            <gpxx:WaypointExtension>
+                <gpxx:Proximity>15.24</gpxx:Proximity>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
         </extensions>
     </wpt>
     <wpt lat="38.63496" lon="-90.28948">
@@ -82,10 +82,10 @@
         <link href="Data/Location3152-6"></link>
         <sym>Waypoint</sym>
         <extensions>
-            <WaypointExtension>
-                <Proximity>15.24</Proximity>
-                <DisplayMode>SymbolAndName</DisplayMode>
-            </WaypointExtension>
+            <gpxx:WaypointExtension>
+                <gpxx:Proximity>15.24</gpxx:Proximity>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
         </extensions>
     </wpt>
     <wpt lat="38.63421" lon="-90.29458">
@@ -94,10 +94,10 @@
         <link href="Data/Location3152-7"></link>
         <sym>Waypoint</sym>
         <extensions>
-            <WaypointExtension>
-                <Proximity>15.24</Proximity>
-                <DisplayMode>SymbolAndName</DisplayMode>
-            </WaypointExtension>
+            <gpxx:WaypointExtension>
+                <gpxx:Proximity>15.24</gpxx:Proximity>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
         </extensions>
     </wpt>
     <wpt lat="38.63633" lon="-90.29083">
@@ -106,10 +106,10 @@
         <link href="Data/Location3152-8"></link>
         <sym>Waypoint</sym>
         <extensions>
-            <WaypointExtension>
-                <Proximity>15.24</Proximity>
-                <DisplayMode>SymbolAndName</DisplayMode>
-            </WaypointExtension>
+            <gpxx:WaypointExtension>
+                <gpxx:Proximity>15.24</gpxx:Proximity>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
         </extensions>
     </wpt>
     <wpt lat="38.63395" lon="-90.28715">
@@ -118,10 +118,10 @@
         <link href="Data/Location3152-9"></link>
         <sym>Waypoint</sym>
         <extensions>
-            <WaypointExtension>
-                <Proximity>15.24</Proximity>
-                <DisplayMode>SymbolAndName</DisplayMode>
-            </WaypointExtension>
+            <gpxx:WaypointExtension>
+                <gpxx:Proximity>15.24</gpxx:Proximity>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
         </extensions>
     </wpt>
     <wpt lat="38.63347" lon="-90.28769">
@@ -130,10 +130,10 @@
         <link href="Data/Location3152-10"></link>
         <sym>Waypoint</sym>
         <extensions>
-            <WaypointExtension>
-                <Proximity>15.24</Proximity>
-                <DisplayMode>SymbolAndName</DisplayMode>
-            </WaypointExtension>
+            <gpxx:WaypointExtension>
+                <gpxx:Proximity>15.24</gpxx:Proximity>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
         </extensions>
     </wpt>
 </gpx>

@@ -1,9 +1,10 @@
 package gpx
 
 import (
-	"encoding/xml"
 	"fmt"
 	"io/ioutil"
+
+	xml "github.com/Zauberstuhl/go-xml"
 )
 
 // ParseFile takes a file and parses it
@@ -33,6 +34,8 @@ func Parse(bytes []byte, g *GPX) error {
 
 // Write GPX file
 func Write(g *GPX, fileName string) error {
+	// Add headers
+	g.Creator = "sudhanshuraheja/go-garmin-gpx"
 	output, err := xml.MarshalIndent(g, "", "    ")
 	if err != nil {
 		return err
