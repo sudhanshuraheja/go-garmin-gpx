@@ -1,10 +1,9 @@
 package gpx
 
 import (
-	"fmt"
-	"io/ioutil"
-
 	xml "github.com/Zauberstuhl/go-xml"
+	"io/ioutil"
+	"strings"
 )
 
 // ParseFile takes a file and parses it
@@ -34,15 +33,19 @@ func Parse(bytes []byte, g *GPX) error {
 
 // Write GPX file
 func Write(g *GPX, fileName string) error {
-	// Add headers
-	g.Creator = "sudhanshuraheja/go-garmin-gpx"
 	output, err := xml.MarshalIndent(g, "", "    ")
 	if err != nil {
 		return err
 	}
 
 	fileData := append([]byte(xml.Header), output...)
-	path := fmt.Sprintf("./out/%s.gpx", fileName)
+	var path string
+
+	if strings.HasSuffix(fileName, "gpx") {
+		path = fileName
+	} else {
+		path = fileName + ".gpx"
+	}
 
 	err = ioutil.WriteFile(path, fileData, 0755)
 	if err != nil {
