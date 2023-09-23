@@ -308,6 +308,6 @@ func NewEncoder(w io.Writer) Encoder {
 	}
 }
 
-func (enc *Encoder) Encoder(v *GPX) error {
+func (enc *Encoder) Encode(v *GPX) error {
 	return enc.encoder.Encode(v)
 }
