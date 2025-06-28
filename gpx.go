@@ -1,8 +1,8 @@
 package gpx
 
 import (
-	"fmt"
 	"io"
+	"os"
 	"strings"
 
 	xml "github.com/Zauberstuhl/go-xml"
