@@ -1,7 +1,8 @@
 package gpx
 
 import (
-	"os"
+	"fmt"
+	"io"
 	"strings"
 
 	xml "github.com/Zauberstuhl/go-xml"
@@ -285,4 +286,32 @@ type DGPSStation int
 // Extensions extend GPX by adding your own elements from another schema
 type Extensions struct {
 	XMLName xml.Name `xml:"extensions"`
+}
+
+type Decoder struct {
+	decoder *xml.Decoder
+}
+
+func NewDecoder(r io.Reader) Decoder {
+	return Decoder{
+		decoder: xml.NewDecoder(r),
+	}
+}
+
+func (dec *Decoder) Decode(v *GPX) error {
+	return dec.decoder.Decode(v)
+}
+
+type Encoder struct {
+	encoder *xml.Encoder
+}
+
+func NewEncoder(w io.Writer) Encoder {
+	return Encoder{
+		encoder: xml.NewEncoder(w),
+	}
+}
+
+func (enc *Encoder) Encode(v *GPX) error {
+	return enc.encoder.Encode(v)
 }

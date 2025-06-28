@@ -2,9 +2,11 @@ package gpx_test
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 	gpx "github.com/sudhanshuraheja/go-garmin-gpx"
 )
 
@@ -174,4 +176,52 @@ func Test_WriteGPX(t *testing.T) {
 		assert.Equal(t, "1.1", p.Version)
 	}
 
+}
+
+func TestDecodeGpx(t *testing.T) {
+	file, err := os.Open("./samples/wikipedia-sample.gpx")
+	require.Nil(t, err)
+
+	decoder := gpx.NewDecoder(file)
+
+	g := new(gpx.GPX)
+	err = decoder.Decode(g)
+	require.Nil(t, err)
+
+	assert.Equal(t, "2009-10-17T22:58:43Z", g.Metadata.Timestamp)
+	assert.Equal(t, "http://www.garmin.com", g.Metadata.Links[0].URL)
+	assert.Equal(t, "Garmin International", g.Metadata.Links[0].Text)
+
+	assert.Equal(t, "Example GPX Document", g.Tracks[0].Name)
+	assert.Equal(t, gpx.Latitude(47.644548), g.Tracks[0].TrackSegments[0].TrackPoint[0].Latitude)
+	assert.Equal(t, 4.46, g.Tracks[0].TrackSegments[0].TrackPoint[0].Elevation)
+	assert.Equal(t, gpx.Latitude(47.644548), g.Tracks[0].TrackSegments[0].TrackPoint[1].Latitude)
+	assert.Equal(t, 4.94, g.Tracks[0].TrackSegments[0].TrackPoint[1].Elevation)
+	assert.Equal(t, gpx.Latitude(47.644548), g.Tracks[0].TrackSegments[0].TrackPoint[2].Latitude)
+	assert.Equal(t, 6.87, g.Tracks[0].TrackSegments[0].TrackPoint[2].Elevation)
+}
+
+func Test_WriteGPX_EncoderDecoder(t *testing.T) {
+
+	fd, err := os.Open("./samples/wikipedia-sample.gpx")
+	require.Nil(t, err)
+
+	decoder := gpx.NewDecoder(fd)
+
+	outName := "./out/wikipedia-sample.gpx"
+	fdo, err := os.Create(outName)
+	require.Nil(t, err)
+
+	encoder := gpx.NewEncoder(fdo)
+
+	g := new(gpx.GPX)
+	err = decoder.Decode(g)
+	require.Nil(t, err)
+
+	err = encoder.Encode(g)
+	require.Nil(t, err)
+
+	p, err := gpx.ParseFile(fdo.Name())
+	assert.Nil(t, err)
+	assert.Equal(t, "1.1", p.Version)
 }
