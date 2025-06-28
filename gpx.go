@@ -1,16 +1,17 @@
 package gpx
 
 import (
-	xml "github.com/Zauberstuhl/go-xml"
-	"io/ioutil"
+	"os"
 	"strings"
+
+	xml "github.com/Zauberstuhl/go-xml"
 )
 
 // ParseFile takes a file and parses it
 func ParseFile(fileName string) (*GPX, error) {
 	g := GPX{}
 
-	bytes, err := ioutil.ReadFile(fileName)
+	bytes, err := os.ReadFile(fileName)
 	if err != nil {
 		return &g, err
 	}
@@ -47,7 +48,7 @@ func Write(g *GPX, fileName string) error {
 		path = fileName + ".gpx"
 	}
 
-	err = ioutil.WriteFile(path, fileData, 0755)
+	err = os.WriteFile(path, fileData, 0755)
 	if err != nil {
 		return err
 	}
