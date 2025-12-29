@@ -1,6 +1,6 @@
 module github.com/sudhanshuraheja/go-garmin-gpx
 
-go 1.17
+go 1.25
 
 require (
 	github.com/Zauberstuhl/go-xml v0.0.0-20180122175953-534ffa216723

@@ -7,6 +7,18 @@ import "encoding/xml"
 // https://www8.garmin.com/xmlschemas/WaypointExtensionv1.xsd
 // https://www8.garmin.com/xmlschemas/TrackPointExtensionv1.xsd
 
+// MetadataExtensions allow storing metadata specific extensions
+type MetadataExtensions struct {
+	XMLName            xml.Name           `xml:"extensions"`
+	MetadataExtensions *MetadataExtension `xml:"custom:metadata,omitempty"`
+}
+
+// MetadataExtension holds custom metadata content
+type MetadataExtension struct {
+	XMLName xml.Name `xml:"custom:metadata"`
+	Custom  string   `xml:",chardata"`
+}
+
 // WayPointExtensions extend GPX by adding your own elements from another schema
 type WayPointExtensions struct {
 	XMLName            xml.Name           `xml:"extensions"`

@@ -16,11 +16,85 @@ func ParseFile(fileName string) (*GPX, error) {
 		return &g, err
 	}
 
+	// Validate coordinates before parsing
+	if err := validateCoordinates(bytes); err != nil {
+		return &g, err
+	}
+
 	err = Parse(bytes, &g)
 	if err != nil {
 		return &g, err
 	}
 	return &g, nil
+}
+
+// validateCoordinates checks for invalid coordinates in the XML
+func validateCoordinates(xmlBytes []byte) error {
+	// Simple validation for latitude and longitude values
+	// This is a basic check, more sophisticated validation could be added
+	if len(xmlBytes) == 0 {
+		return fmt.Errorf("empty XML file")
+	}
+
+	// Check for malformed XML by attempting to parse it
+	err := xml.Unmarshal(xmlBytes, &struct{}{})
+	if err != nil {
+		return fmt.Errorf("malformed XML: %v", err)
+	}
+
+	// Unmarshal the XML into a GPX struct
+	var gpx GPX
+	err = xml.Unmarshal(xmlBytes, &gpx)
+	if err != nil {
+		return fmt.Errorf("failed to unmarshal GPX: %v", err)
+	}
+
+	// Validate coordinates
+	coordinateFound := false
+	for _, waypoint := range gpx.Waypoints {
+		if err := validateCoordinate(waypoint.Latitude, waypoint.Longitude); err != nil {
+			return err
+		}
+		coordinateFound = true
+	}
+
+	for _, route := range gpx.Routes {
+		for _, routePoint := range route.RoutePoints {
+			if err := validateCoordinate(routePoint.Latitude, routePoint.Longitude); err != nil {
+				return err
+			}
+			coordinateFound = true
+		}
+	}
+
+	for _, track := range gpx.Tracks {
+		for _, trackSegment := range track.TrackSegments {
+			for _, trackPoint := range trackSegment.TrackPoint {
+				if err := validateCoordinate(trackPoint.Latitude, trackPoint.Longitude); err != nil {
+					return err
+				}
+				coordinateFound = true
+			}
+		}
+	}
+
+	if !coordinateFound {
+		return fmt.Errorf("no coordinates found in GPX data")
+	}
+
+	return nil
+}
+
+func validateCoordinate(lat Latitude, lon Longitude) error {
+	if lat < -90.0 || lat > 90.0 {
+		return fmt.Errorf("invalid latitude: %f (must be between -90.0 and 90.0)", lat)
+	}
+
+	if lon < -180.0 || lon > 180.0 {
+		return fmt.Errorf("invalid longitude: %f (must be between -180.0 and 180.0)", lon)
+	}
+
+	return nil
 }
 
 // Parse bytes of xml
@@ -70,82 +144,82 @@ type GPX struct {
 
 // Metadata has information about the GPX file
 type Metadata struct {
-	XMLName     xml.Name    `xml:"metadata"`
-	Name        string      `xml:"name,omitempty"`
-	Description string      `xml:"desc,omitempty"`
-	Author      *Person     `xml:"author,omitempty"`
-	Copyright   *Copyright  `xml:"copyright,omitempty"`
-	Links       []Link      `xml:"link,omitempty"`
-	Timestamp   string      `xml:"time,omitempty"`
-	Keywords    string      `xml:"keywords,omitempty"`
-	Bounds      *Bounds     `xml:"bounds,omitempty"`
-	Extensions  *Extensions `xml:"extensions,omitempty"`
+	XMLName     xml.Name            `xml:"metadata"`
+	Name        string              `xml:"name,omitempty"`
+	Description string              `xml:"desc,omitempty"`
+	Author      *Person             `xml:"author,omitempty"`
+	Copyright   *Copyright          `xml:"copyright,omitempty"`
+	Links       []Link              `xml:"link,omitempty"`
+	Timestamp   string              `xml:"time,omitempty"`
+	Keywords    string              `xml:"keywords,omitempty"`
+	Bounds      *Bounds             `xml:"bounds,omitempty"`
+	Extensions  *MetadataExtensions `xml:"extensions,omitempty"`
 }
 
 // WayPoint is a point of interest, or named feature on a map.
 type WayPoint struct {
-	XMLName                       xml.Name           `xml:"wpt"`
-	Latitude                      Latitude           `xml:"lat,attr"`
-	Longitude                     Longitude          `xml:"lon,attr"`
-	Elevation                     float64            `xml:"ele,omitempty"`
-	Timestamp                     string             `xml:"time,omitempty"`
-	MagneticVariation             Degrees            `xml:"magvar,omitempty"`
-	GeoIDHeight                   float64            `xml:"geoidheight,omitempty"`
-	Name                          string             `xml:"name,omitempty"`
-	Comment                       string             `xml:"cmt,omitempty"`
-	Description                   string             `xml:"desc,omitempty"`
-	Source                        string             `xml:"src,omitempty"`
-	Links                         []Link             `xml:"link,omitempty"`
-	Symbol                        string             `xml:"sym,omitempty"`
-	Type                          string             `xml:"type,omitempty"`
-	Fix                           Fix                `xml:"fix,omitempty"`
-	Sat                           int                `xml:"sat,omitempty"`
-	HorizontalDilutionOfPrecision float64            `xml:"hdop,omitempty"`
-	VerticalDilutionOfPrecision   float64            `xml:"vdop,omitempty"`
-	PositionDilutionOfPrecision   float64            `xml:"pdop,omitempty"`
-	AgeOfGpsData                  float64            `xml:"ageofgpsdata,omitempty"`
-	DifferentialGPSID             DGPSStation        `xml:"dgpsid,omitempty"`
-	Extensions                    WayPointExtensions `xml:"extensions,omitempty"`
+	XMLName                       xml.Name            `xml:"wpt"`
+	Latitude                      Latitude            `xml:"lat,attr"`
+	Longitude                     Longitude           `xml:"lon,attr"`
+	Elevation                     float64             `xml:"ele,omitempty"`
+	Timestamp                     string              `xml:"time,omitempty"`
+	MagneticVariation             Degrees             `xml:"magvar,omitempty"`
+	GeoIDHeight                   float64             `xml:"geoidheight,omitempty"`
+	Name                          string              `xml:"name,omitempty"`
+	Comment                       string              `xml:"cmt,omitempty"`
+	Description                   string              `xml:"desc,omitempty"`
+	Source                        string              `xml:"src,omitempty"`
+	Links                         []Link              `xml:"link,omitempty"`
+	Symbol                        string              `xml:"sym,omitempty"`
+	Type                          string              `xml:"type,omitempty"`
+	Fix                           Fix                 `xml:"fix,omitempty"`
+	Sat                           int                 `xml:"sat,omitempty"`
+	HorizontalDilutionOfPrecision float64             `xml:"hdop,omitempty"`
+	VerticalDilutionOfPrecision   float64             `xml:"vdop,omitempty"`
+	PositionDilutionOfPrecision   float64             `xml:"pdop,omitempty"`
+	AgeOfGpsData                  float64             `xml:"ageofgpsdata,omitempty"`
+	DifferentialGPSID             DGPSStation         `xml:"dgpsid,omitempty"`
+	Extensions                    *WayPointExtensions `xml:"extensions,omitempty"`
 }
 
 // Route is an ordered list of Waypoints representing a series of points leading to a destination.
 type Route struct {
-	XMLName     xml.Name        `xml:"rte"`
-	Name        string          `xml:"name,omitempty"`
-	Comment     string          `xml:"cmt,omitempty"`
-	Description string          `xml:"desc,omitempty"`
-	Source      string          `xml:"src,omitempty"`
-	Links       []Link          `xml:"link"`
-	Number      int             `xml:"number,omitempty"`
-	Type        string          `xml:"type,omitempty"`
-	Extensions  RouteExtensions `xml:"extensions,omitempty"`
-	RoutePoints []RoutePoint    `xml:"rtept"`
+	XMLName     xml.Name         `xml:"rte"`
+	Name        string           `xml:"name,omitempty"`
+	Comment     string           `xml:"cmt,omitempty"`
+	Description string           `xml:"desc,omitempty"`
+	Source      string           `xml:"src,omitempty"`
+	Links       []Link           `xml:"link"`
+	Number      int              `xml:"number,omitempty"`
+	Type        string           `xml:"type,omitempty"`
+	RoutePoints []RoutePoint     `xml:"rtept"`
+	Extensions  *RouteExtensions `xml:"extensions,omitempty"`
 }
 
 // RoutePoint is a point of interest, or named feature on a map.
 type RoutePoint struct {
-	XMLName                       xml.Name             `xml:"rtept"`
-	Latitude                      Latitude             `xml:"lat,attr"`
-	Longitude                     Longitude            `xml:"lon,attr"`
-	Elevation                     float64              `xml:"ele,omitempty"`
-	Timestamp                     string               `xml:"time,omitempty"`
-	MagneticVariation             Degrees              `xml:"magvar,omitempty"`
-	GeoIDHeight                   float64              `xml:"geoidheight,omitempty"`
-	Name                          string               `xml:"name,omitempty"`
-	Comment                       string               `xml:"cmt,omitempty"`
-	Description                   string               `xml:"desc,omitempty"`
-	Source                        string               `xml:"src,omitempty"`
-	Links                         []Link               `xml:"link"`
-	Symbol                        string               `xml:"sym,omitempty"`
-	Type                          string               `xml:"type,omitempty"`
-	Fix                           Fix                  `xml:"fix,omitempty"`
-	Sat                           int                  `xml:"sat,omitempty"`
-	HorizontalDilutionOfPrecision float64              `xml:"hdop,omitempty"`
-	VerticalDilutionOfPrecision   float64              `xml:"vdop,omitempty"`
-	PositionDilutionOfPrecision   float64              `xml:"pdop,omitempty"`
-	AgeOfGpsData                  float64              `xml:"ageofgpsdata,omitempty"`
-	DifferentialGPSID             DGPSStation          `xml:"dgpsid,omitempty"`
-	Extensions                    RoutePointExtensions `xml:"extensions,omitempty"`
+	XMLName                       xml.Name              `xml:"rtept"`
+	Latitude                      Latitude              `xml:"lat,attr"`
+	Longitude                     Longitude             `xml:"lon,attr"`
+	Elevation                     float64               `xml:"ele,omitempty"`
+	Timestamp                     string                `xml:"time,omitempty"`
+	MagneticVariation             Degrees               `xml:"magvar,omitempty"`
+	GeoIDHeight                   float64               `xml:"geoidheight,omitempty"`
+	Name                          string                `xml:"name,omitempty"`
+	Comment                       string                `xml:"cmt,omitempty"`
+	Description                   string                `xml:"desc,omitempty"`
+	Source                        string                `xml:"src,omitempty"`
+	Links                         []Link                `xml:"link"`
+	Symbol                        string                `xml:"sym,omitempty"`
+	Type                          string                `xml:"type,omitempty"`
+	Fix                           Fix                   `xml:"fix,omitempty"`
+	Sat                           int                   `xml:"sat,omitempty"`
+	HorizontalDilutionOfPrecision float64               `xml:"hdop,omitempty"`
+	VerticalDilutionOfPrecision   float64               `xml:"vdop,omitempty"`
+	PositionDilutionOfPrecision   float64               `xml:"pdop,omitempty"`
+	AgeOfGpsData                  float64               `xml:"ageofgpsdata,omitempty"`
+	DifferentialGPSID             DGPSStation           `xml:"dgpsid,omitempty"`
+	Extensions                    *RoutePointExtensions `xml:"extensions,omitempty"`
 }
 
 // Track represents a track - an ordered list of points describing a path
@@ -158,15 +232,14 @@ type Track struct {
 	Links         []Link           `xml:"link"`
 	Number        int              `xml:"number,omitempty"`
 	Type          string           `xml:"type,omitempty"`
-	Extensions    *TrackExtensions `xml:"extensions,omitempty"`
 	TrackSegments []TrackSegment   `xml:"trkseg"`
+	Extensions    *TrackExtensions `xml:"extensions,omitempty"`
 }
 
 // TrackSegment has a list of continious span of TrackPoints
 type TrackSegment struct {
 	XMLName    xml.Name     `xml:"trkseg"`
 	TrackPoint []TrackPoint `xml:"trkpt"`
-	Extensions *Extensions  `xml:"extensions,omitempty"`
 }
 
 // TrackPoint is a point of interest, or named feature on a map.
@@ -277,8 +350,3 @@ const (
 
 // DGPSStation represents a differential GPS station and varies between 0 to 1023
 type DGPSStation int
-
-// Extensions extend GPX by adding your own elements from another schema
-type Extensions struct {
-	XMLName xml.Name `xml:"extensions"`
-}

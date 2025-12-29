@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx version="1.1" creator="sudhanshuraheja/go-garmin-gpx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:garmin="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www8.garmin.com/xmlschemas/GpxExtensionsv3.xsd">
+  <wpt lat="91.0" lon="181.0">
+    <ele>0.0</ele>
+    <magvar>360.0</magvar>
+  </wpt>
+</gpx>

@@ -54,7 +54,6 @@
         </link>
         <number>1</number>
         <type>routeType</type>
-        <extensions></extensions>
         <rtept lat="90" lon="180">
             <ele>10</ele>
             <time>2018-02-26T22:58:34Z</time>
@@ -74,6 +73,7 @@
             <dgpsid>1023</dgpsid>
             <extensions></extensions>
         </rtept>
+        <extensions></extensions>
     </rte>
     <trk>
         <name>trackName</name>
@@ -86,7 +86,6 @@
         </link>
         <number>1</number>
         <type>trackType</type>
-        <extensions></extensions>
         <trkseg>
             <trkpt lat="90" lon="180">
                 <ele>10</ele>
@@ -107,7 +106,7 @@
                 <dgpsid>1023</dgpsid>
                 <extensions></extensions>
             </trkpt>
-            <extensions></extensions>
         </trkseg>
+        <extensions></extensions>
     </trk>
 </gpx>
