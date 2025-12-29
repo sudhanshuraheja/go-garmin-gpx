@@ -2,7 +2,9 @@ package gpx
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
+	"os"
+	"strings"
 
 	xml "github.com/Zauberstuhl/go-xml"
 )
@@ -11,7 +13,7 @@ import (
 func ParseFile(fileName string) (*GPX, error) {
 	g := GPX{}
 
-	bytes, err := ioutil.ReadFile(fileName)
+	bytes, err := os.ReadFile(fileName)
 	if err != nil {
 		return &g, err
 	}
@@ -108,17 +110,21 @@ func Parse(bytes []byte, g *GPX) error {
 
 // Write GPX file
 func Write(g *GPX, fileName string) error {
-	// Add headers
-	g.Creator = "sudhanshuraheja/go-garmin-gpx"
 	output, err := xml.MarshalIndent(g, "", "    ")
 	if err != nil {
 		return err
 	}
 
 	fileData := append([]byte(xml.Header), output...)
-	path := fmt.Sprintf("./out/%s.gpx", fileName)
+	var path string
 
-	err = ioutil.WriteFile(path, fileData, 0755)
+	if strings.HasSuffix(fileName, "gpx") {
+		path = fileName
+	} else {
+		path = fileName + ".gpx"
+	}
+
+	err = os.WriteFile(path, fileData, 0755)
 	if err != nil {
 		return err
 	}
@@ -350,3 +356,36 @@ const (
 
 // DGPSStation represents a differential GPS station and varies between 0 to 1023
 type DGPSStation int
+
+// Extensions extend GPX by adding your own elements from another schema
+type Extensions struct {
+	XMLName xml.Name `xml:"extensions"`
+}
+
+type Decoder struct {
+	decoder *xml.Decoder
+}
+
+func NewDecoder(r io.Reader) Decoder {
+	return Decoder{
+		decoder: xml.NewDecoder(r),
+	}
+}
+
+func (dec *Decoder) Decode(v *GPX) error {
+	return dec.decoder.Decode(v)
+}
+
+type Encoder struct {
+	encoder *xml.Encoder
+}
+
+func NewEncoder(w io.Writer) Encoder {
+	return Encoder{
+		encoder: xml.NewEncoder(w),
+	}
+}
+
+func (enc *Encoder) Encode(v *GPX) error {
+	return enc.encoder.Encode(v)
+}
